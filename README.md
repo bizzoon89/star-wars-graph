@@ -1,41 +1,59 @@
+# Star Wars Graph Viewer
 
-# Star Wars Graph — React + TypeScript + React Flow + Tailwind
+This project is a **React + TypeScript + Vite** app that visualizes relationships between Star Wars characters, films, and starships using **React Flow**.
 
-Lists Star Wars heroes and visualizes their Films → Starships graph.
+The app fetches data from the public API [`https://sw-api.starnavi.io`](https://sw-api.starnavi.io).
 
-## Highlights
-- Infinite scroll (IntersectionObserver) with animated loader
-- Details in modal (no page reload)
-- React Flow graph
-- Tailwind responsive UI
-- Unit tests with Vitest + MSW (no real API calls)
-- Comments in English, clear naming, SOLID/DRY/KISS
+---
 
-## Install
+## 🚀 Features
+
+- Infinite scroll list of people (React Query)
+- On-demand graph visualization for each character
+- Modal-based display (no full page reload)
+- Unit tests for all main logic (Vitest + React Testing Library)
+- Clean, SOLID, DRY, and KISS compliant architecture
+
+---
+
+## 🧱 Tech Stack
+
+- **React 18** + **TypeScript**
+- **React Query** (`@tanstack/react-query`)
+- **React Flow** for graph visualization
+- **Vite** for build
+- **TailwindCSS** for UI
+- **Vitest** + **@testing-library/react** for unit tests
+
+---
+
+## ⚙️ Installation
+
 ```bash
+# 1. Clone the repository
+git clone https://github.com/bizzoon89/star-wars-graph.git
+cd star-wars-graph
+
+# 2. Install dependencies
 npm install
 ```
 
 ## Dev
+
 ```bash
 npm run dev
 # open http://localhost:5173
 ```
 
 ## Build & Preview
+
 ```bash
 npm run build
 npm run preview
 ```
 
 ## Tests (no real HTTP)
+
 ```bash
 npm test        # run once
-npm run test:ui # watch mode
-npm run coverage
 ```
-
-### Why tests do not hit the real API
-- MSW (`src/mocks/*`) intercepts all `fetch` calls.
-- `setupTests.ts` starts the MSW server before tests and shuts it down after.
-- Also mocks `IntersectionObserver` and `ResizeObserver` so React Flow and infinite scroll work in jsdom.
