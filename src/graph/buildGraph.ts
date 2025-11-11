@@ -17,11 +17,11 @@ export type Graph = { nodes: RFNode[]; edges: RFEdge[] };
  * Graph structure containing nodes and edges for React Flow
  */
 
-export function buildGraph(
+export const buildGraph = (
   person: { id: number; name: string; films: number[]; starships: number[] },
   filmMap: Map<number, Film>,
   shipMap: Map<number, Starship>
-): Graph {
+): Graph => {
   const nodes: RFNode[] = [
     { id: `person-${person.id}`, data: { label: person.name }, position: { x: 0, y: 0 }, type: 'input' },
   ];
@@ -51,4 +51,4 @@ export function buildGraph(
   }
 
   return { nodes, edges };
-}
+};

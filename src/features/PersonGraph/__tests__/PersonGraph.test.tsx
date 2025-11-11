@@ -33,7 +33,7 @@ vi.mock('@/hooks/usePersonGraph', () => ({
 
 import { render, screen } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import PersonGraph from '../PersonGraph';
+import { PersonGraph } from '../PersonGraph';
 import { usePersonGraph } from '@/hooks/usePersonGraph';
 
 // --- Helper: render with a stable React Query client (no retries/suspense) ---

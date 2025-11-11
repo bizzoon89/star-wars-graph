@@ -1,8 +1,8 @@
 import { useCallback, useMemo, useState } from 'react';
-import { usePeople } from '../../hooks/usePeople';
+import { usePeople } from '@/hooks/usePeople';
 import { getIdFromUrl } from '@/api/swapi';
 import { Modal } from '@/components/Modal';
-import PersonGraph from '@/features/person/PersonGraph';
+import { PersonGraph } from '@/features/PersonGraph';
 import { Button } from '@/components/Button';
 import { Loader } from '@/components/Loader';
 import { InfiniteList } from '@/components/InfiniteList';
@@ -13,7 +13,8 @@ import { InfiniteList } from '@/components/InfiniteList';
  * - Infinite scroll + loader
  * - Details in a modal (no page reload)
  */
-export default function PeopleList() {
+
+export const PeopleList = () => {
   const [selectedPersonId, setSelectedPersonId] = useState<number | null>(null);
 
   // Fetch paginated people list
@@ -91,4 +92,4 @@ export default function PeopleList() {
       )}
     </div>
   );
-}
+};

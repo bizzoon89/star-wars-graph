@@ -5,7 +5,8 @@ import { films, people, starships } from '@/api/swapi';
  * Loads person, then films and starships.
  * Hooks order is stable to avoid "Rendered more hooks" error.
  */
-export function usePersonGraph(id: number) {
+
+export const usePersonGraph = (id: number) => {
   const personQuery = useQuery({
     queryKey: ['person', id],
     queryFn: () => people.byId(id),
@@ -35,4 +36,4 @@ export function usePersonGraph(id: number) {
   });
 
   return { personQuery, filmsQuery, starshipsQuery };
-}
+};

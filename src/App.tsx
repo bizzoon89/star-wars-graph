@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import PeopleList from '@/features/people/PeopleList';
+import { PeopleList } from '@/features/PeopleList';
 
 //  Initialize React Query client (for caching and request control)
 const queryClient = new QueryClient();

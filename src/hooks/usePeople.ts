@@ -5,7 +5,8 @@ import { people } from '@/api/swapi';
  * Infinite list of people.
  * Uses the server-provided "next" to compute the next page.
  */
-export function usePeople() {
+
+export const usePeople = () => {
   return useInfiniteQuery({
     queryKey: ['people'],
     queryFn: ({ pageParam = 1 }) => people.list(pageParam),
@@ -16,4 +17,4 @@ export function usePeople() {
     },
     initialPageParam: 1,
   });
-}
+};

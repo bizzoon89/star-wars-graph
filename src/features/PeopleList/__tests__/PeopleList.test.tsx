@@ -21,7 +21,7 @@ vi.mock('@/features/person/PersonGraph', () => ({
 }));
 
 // --- Import after mocks ---
-import PeopleList from '../PeopleList';
+import { PeopleList } from '../PeopleList';
 
 // --- Helper ---
 function renderWithClient(ui: React.ReactElement) {

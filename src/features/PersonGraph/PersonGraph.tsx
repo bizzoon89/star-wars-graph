@@ -3,7 +3,7 @@ import ReactFlow, { Background, Controls } from 'reactflow';
 import 'reactflow/dist/style.css';
 import { useMemo } from 'react';
 import { buildGraph } from '@/graph/buildGraph';
-import { usePersonGraph } from '../../hooks/usePersonGraph';
+import { usePersonGraph } from '@/hooks/usePersonGraph';
 import { getIdFromUrl } from '@/api/swapi';
 
 /**
@@ -15,7 +15,7 @@ import { getIdFromUrl } from '@/api/swapi';
  *  - Optional character ID (used when rendering inside a modal)
  */
 
-export default function PersonGraph({ idProp }: { idProp?: number }) {
+export const PersonGraph = ({ idProp }: { idProp?: number }) => {
   const routeParams = useParams();
   const resolvedId = idProp ?? Number(routeParams.id || 0);
 
@@ -69,4 +69,4 @@ export default function PersonGraph({ idProp }: { idProp?: number }) {
       </div>
     </div>
   );
-}
+};
