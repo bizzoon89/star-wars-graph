@@ -1,56 +1,65 @@
 import { people, films, starships, getIdFromUrl } from '@/api/swapi';
+import { vi, beforeEach, describe, it, expect } from 'vitest';
 
 /** Unit tests for SWAPI API helpers (mocked fetch). */
 
-describe('swapi API helpers', () => {
-  beforeEach(() => {
-    (fetch as any).mockClear();
-  });
+const mockFetch = vi.fn();
 
+beforeEach(() => {
+  mockFetch.mockReset();
+  vi.stubGlobal('fetch', mockFetch);
+});
+
+describe('swapi API helpers', () => {
   it('fetches list of people', async () => {
-    (fetch as any).mockResolvedValueOnce({
+    mockFetch.mockResolvedValueOnce({
       ok: true,
       json: async () => ({ results: [{ name: 'Luke Skywalker' }] }),
-    });
+    } as Response);
 
     const data = await people.list(1);
     expect(data.results[0].name).toBe('Luke Skywalker');
-
-    expect(fetch).toHaveBeenCalledWith(expect.stringContaining('people/?page=1'), expect.any(Object));
+    expect(mockFetch).toHaveBeenCalledWith(expect.stringContaining('people/?page=1'), expect.any(Object));
   });
 
   it('fetches single person by id', async () => {
-    (fetch as any).mockResolvedValueOnce({
+    mockFetch.mockResolvedValueOnce({
       ok: true,
       json: async () => ({ name: 'Darth Vader' }),
-    });
+    } as Response);
 
     const person = await people.byId(2);
     expect(person.name).toBe('Darth Vader');
   });
 
   it('fetches film data', async () => {
-    (fetch as any).mockResolvedValueOnce({
+    mockFetch.mockResolvedValueOnce({
       ok: true,
       json: async () => ({ title: 'A New Hope' }),
-    });
+    } as Response);
 
     const film = await films.byId(1);
     expect(film.title).toBe('A New Hope');
   });
 
   it('fetches starship data', async () => {
-    (fetch as any).mockResolvedValueOnce({
+    mockFetch.mockResolvedValueOnce({
       ok: true,
       json: async () => ({ name: 'X-Wing' }),
-    });
+    } as Response);
 
     const ship = await starships.byId(12);
     expect(ship.name).toBe('X-Wing');
   });
 
   it('throws error when response is not ok', async () => {
-    (fetch as any).mockResolvedValueOnce({ ok: false, status: 404 });
+    mockFetch.mockResolvedValueOnce({
+      ok: false,
+      status: 404,
+      statusText: 'Not Found',
+      text: async () => 'Not Found',
+    } as Response);
+
     await expect(people.byId(999)).rejects.toThrow();
   });
 

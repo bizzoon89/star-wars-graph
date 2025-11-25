@@ -1,4 +1,3 @@
-import { useParams, Link } from 'react-router-dom';
 import ReactFlow, { Background, Controls } from 'reactflow';
 import 'reactflow/dist/style.css';
 import { useMemo } from 'react';
@@ -15,9 +14,8 @@ import { getIdFromUrl } from '@/api/swapi';
  *  - Optional character ID (used when rendering inside a modal)
  */
 
-export const PersonGraph = ({ idProp }: { idProp?: number }) => {
-  const routeParams = useParams();
-  const resolvedId = idProp ?? Number(routeParams.id || 0);
+export const PersonGraph = ({ idProp }: { idProp: number }) => {
+  const resolvedId = idProp;
 
   const { personQuery, filmsQuery, starshipsQuery } = usePersonGraph(resolvedId);
 

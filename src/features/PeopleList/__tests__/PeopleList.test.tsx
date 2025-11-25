@@ -16,8 +16,8 @@ vi.mock('@/components/Modal', () => ({
   Modal: ({ children }: { children: React.ReactNode }) => <div data-testid='modal'>{children}</div>,
 }));
 
-vi.mock('@/features/person/PersonGraph', () => ({
-  default: ({ idProp }: { idProp: number }) => <div data-testid='person-graph'>Graph for {idProp}</div>,
+vi.mock('@/features/PersonGraph', () => ({
+  PersonGraph: ({ idProp }: { idProp: number }) => <div data-testid='person-graph'>Graph for {idProp}</div>,
 }));
 
 // --- Import after mocks ---

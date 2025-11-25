@@ -9,10 +9,22 @@ export const people = {
 
 export const films = {
   byId: (id: number) => json<Film>(`/films/${id}/`),
+
+  byIds: (ids: number[]) => {
+    if (!ids.length) return Promise.resolve([]);
+    const idsParam = ids.join(',');
+    return json<{ results: Film[] }>(`/films/?id__in=${idsParam}`).then(res => res.results);
+  },
 };
 
 export const starships = {
   byId: (id: number) => json<Starship>(`/starships/${id}/`),
+
+  byIds: (ids: number[]) => {
+    if (!ids.length) return Promise.resolve([]);
+    const idsParam = ids.join(',');
+    return json<{ results: Starship[] }>(`/starships/?id__in=${idsParam}`).then(res => res.results);
+  },
 };
 
 /** Extract numeric ID from a SWAPI resource URL. */
